@@ -20,10 +20,10 @@
      ## Special target to make Makefile silent
      ## (without rules specifications suppresses output from all rules)
 
-     .SILENT : 
+     .SILENT :
 
      ## Phony targets
-     .PHONY : git, git-am
+     .PHONY : git, git-am, archive
 
      ## Default rule when calling `make`
      ALL : git
@@ -31,20 +31,20 @@
 
 
      # Block of the rules for code publication on GitHub
-     
+
      ## Username on GitHub
      username := Paveloom
 
      ## Rule for creation and publishing of a commit
 
-     git : 
+     git :
 	      git add -A
 	      git commit -e
 	      git push
- 
+
      ## Rule for amending of the last commit
- 
-     git-am : 
+
+     git-am :
 	         git add -A
 	         git commit --amend
 	         git push --force-with-lease
