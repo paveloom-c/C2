@@ -52,4 +52,5 @@
      # Rule for creating of archives
 
      archive :
-	          rm file.zip; find tests/period_plots -path '*/.*' -prune -o -type f -print | zip file.zip -q -@
+	          cd tests/period_plots/ && find . -path '*/.*' -prune -o -type f -print | zip ../../archives/tests/period_plots.zip -FS -q -@
+	          cd tests/sigma_clipping/ && find . -path '*/.*' -prune -o -type f -print | zip ../../archives/tests/sigma_clipping.zip -FS -q -@
