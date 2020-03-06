@@ -8,19 +8,20 @@ reparams:
     t: return exp(log_timescale);
     p: return exp(log_period);
     f: return exp(log_factor);
+    pi: return 4 * atan(1.0);
 
-value: return a / (2 + f) * exp(-x1 / t) * (cos(2 * pi * x1 / p) + 1 + f);
+value: return a/(2 + f) * exp(-abs(x1-x2)/t) * (cos(2*pi*abs(x1-x2)/p) + 1 + f);
 
 grad:
     x1: |
-        return (2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1))+(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1))
+        return (2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1))+(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1));
     x2: |
-        return (-(2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1)))-(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1))
+        return (-(2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1)))-(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1));
     log_amp: |
-        return 0;
+        return (exp(log(a)-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/(f+2);
     log_timescale: |
-        return 0;
+        return (a*exp((-exp(-log(t))*abs(x2-x1))-log(t))*abs(x2-x1)*(cos((2*pi*abs(x2-x1))/p)+f+1))/(f+2);
     log_period: |
-        return 0;
+        return (2*a*pi*exp((-abs(x2-x1)/t)-log(p))*abs(x2-x1)*sin(2*exp(-log(p))*pi*abs(x2-x1)))/(f+2);
     log_factor: |
-        return 0;
+        return (a*exp(log(f)-abs(x2-x1)/t))/(exp(log(f))+2)-(a*exp(log(f)-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+exp(log(f))+1))/(pow(exp(log(f))+2,2));
