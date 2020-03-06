@@ -1,0 +1,26 @@
+name: RotationKernel
+doc: The covariance function taken from Foreman-Mackey (2017)
+stationary: false
+params: [log_amp, log_timescale, log_period, log_factor]
+
+reparams:
+    a: return exp(log_amp);
+    t: return exp(log_timescale);
+    p: return exp(log_period);
+    f: return exp(log_factor);
+
+value: return a / (2 + f) * exp(-x1 / t) * (cos(2 * pi * x1 / p) + 1 + f);
+
+grad:
+    x1: |
+        return (2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1))+(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1))
+    x2: |
+        return (-(2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1)))-(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1))
+    log_amp: |
+        return 0;
+    log_timescale: |
+        return 0;
+    log_period: |
+        return 0;
+    log_factor: |
+        return 0;
