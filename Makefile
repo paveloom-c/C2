@@ -52,5 +52,7 @@
      # Rule for creating of archives
 
      archive :
-	          cd tests/period_plots/ && find . -path '*/.*' -prune -o -type f -print | zip ../../archives/tests/period_plots.zip -FS -q -@
-	          cd tests/sigma_clipping/ && find . -path '*/.*' -prune -o -type f -print | zip ../../archives/tests/sigma_clipping.zip -FS -q -@
+	          cd Notebooks/ && find Base/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Base.zip -FS -q -@
+	          # cd Notebooks/ && find Comparison/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Comparison.zip -FS -q -@
+	          cd Notebooks/ && find Tests/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Tests.zip -FS -q -@
+	          find Notebooks/ -path '*/.*' -prune -o -type f -print | zip Archives/Notebooks.zip -FS -q -@
