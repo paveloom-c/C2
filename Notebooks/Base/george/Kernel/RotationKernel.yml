@@ -33,7 +33,8 @@ grad:
                arg = two_pi_p*xd_abs;
         return two_pi*ma*xd*exp_m_xd_abs_t*sin(arg)/(f_2*p*xd_abs)+ma*xd*exp_m_xd_abs_t*(cos(arg)+f+1)/(f_2*t*xd_abs);
     log_amp: |
-        return (exp(log(a)-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/(f+2);
+        double xd_abs = abs(x2-x1);
+        return a*exp(-xd_abs/t)*(cos(2*pi*xd_abs/p)+f+1)/(f+2);
     log_timescale: |
         return (a*exp((-exp(-log(t))*abs(x2-x1))-log(t))*abs(x2-x1)*(cos((2*pi*abs(x2-x1))/p)+f+1))/(f+2);
     log_period: |
