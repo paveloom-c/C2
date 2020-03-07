@@ -21,9 +21,17 @@ grad:
                xd_abs = abs(xd),
                exp_m_xd_abs_t = exp(-xd_abs/t),
                arg = two_pi_p*xd_abs;
-        return (two_pi*a*xd*exp_m_xd_abs_t*sin(arg))/(f_2*p*xd_abs)+(a*xd*exp_m_xd_abs_t*(cos(arg)+f+1))/(f_2*t*xd_abs);
+        return two_pi*a*xd*exp_m_xd_abs_t*sin(arg)/(f_2*p*xd_abs)+a*xd*exp_m_xd_abs_t*(cos(arg)+f+1)/(f_2*t*xd_abs);
     x2: |
-        return (-(2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1)))-(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1));
+        double ma = -a,
+               f_2 = f+2,
+               two_pi = 2*pi,
+               two_pi_p = two_pi/p,
+               xd = x2-x1,
+               xd_abs = abs(xd),
+               exp_m_xd_abs_t = exp(-xd_abs/t),
+               arg = two_pi_p*xd_abs;
+        return two_pi*ma*xd*exp_m_xd_abs_t*sin(arg)/(f_2*p*xd_abs)+ma*xd*exp_m_xd_abs_t*(cos(arg)+f+1)/(f_2*t*xd_abs);
     log_amp: |
         return (exp(log(a)-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/(f+2);
     log_timescale: |
