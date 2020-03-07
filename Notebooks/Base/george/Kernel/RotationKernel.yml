@@ -14,7 +14,14 @@ value: return a/(2 + f) * exp(-abs(x1-x2)/t) * (cos(2*pi*abs(x1-x2)/p) + 1 + f);
 
 grad:
     x1: |
-        return (2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1))+(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1));
+        double f_2 = f+2,
+               two_pi = 2*pi,
+               two_pi_p = two_pi/p,
+               xd = x2-x1,
+               xd_abs = abs(xd),
+               exp_m_xd_abs_t = exp(-xd_abs/t),
+               arg = two_pi_p*xd_abs;
+        return (two_pi*a*xd*exp_m_xd_abs_t*sin(arg))/(f_2*p*xd_abs)+(a*xd*exp_m_xd_abs_t*(cos(arg)+f+1))/(f_2*t*xd_abs);
     x2: |
         return (-(2*a*pi*(x2-x1)*exp(-abs(x2-x1)/t)*sin((2*pi*abs(x2-x1))/p))/((f+2)*p*abs(x2-x1)))-(a*(x2-x1)*exp(-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+f+1))/((f+2)*t*abs(x2-x1));
     log_amp: |
