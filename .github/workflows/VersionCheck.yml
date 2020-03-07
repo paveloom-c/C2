@@ -9,5 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Running the script to check the version
       run: bash -x .github/scripts/VersionCheck.sh
