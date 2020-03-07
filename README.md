@@ -1,4 +1,4 @@
-[![](https://img.shields.io/badge/release-v0.3.0-informational.svg)](https://github.com/Paveloom/C2/releases/tag/v0.3.0)
+[![](https://img.shields.io/badge/release-v0.3.1-informational.svg)](https://github.com/Paveloom/C2/releases/tag/v0.3.1)
 
 ### Description
 
