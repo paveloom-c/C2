@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Running the script to check the version
       run: | 
-        git fetch --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+        git clone git@github.com:Paveloom/C2.git
         bash -x .github/scripts/VersionCheck.sh

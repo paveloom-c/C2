@@ -78,12 +78,7 @@ function run_version_checks {
 
 }
 
-git pull --all
-git branch
-git checkout master
-git log
-git checkout feature
-git log
+
 
 # Saving an output of the next command in a variable
 MASTER_TAG="$(git describe --tags master)"
