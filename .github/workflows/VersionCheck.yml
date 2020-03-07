@@ -12,5 +12,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Running the script to check the version
       run: | 
-        git fetch --prune --unshallow
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         bash -x .github/scripts/VersionCheck.sh
