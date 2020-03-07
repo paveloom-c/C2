@@ -40,6 +40,9 @@ grad:
                xd_abs_t = xd_abs / t;
         return a*exp(-xd_abs/t)*xd_abs_t*(cos(2*pi*xd_abs/p)+f+1)/(f+2);
     log_period: |
-        return (2*a*pi*exp((-abs(x2-x1)/t)-log(p))*abs(x2-x1)*sin(2*exp(-log(p))*pi*abs(x2-x1)))/(f+2);
+        double two_pi = 2*pi,
+               xd_abs = abs(x2-x1),
+               xd_abs_p = xd_abs / p;
+        return two_pi*a*exp(-xd_abs/t)*xd_abs_p*sin(two_pi*xd_abs_p)/(f+2);
     log_factor: |
         return (a*exp(log(f)-abs(x2-x1)/t))/(exp(log(f))+2)-(a*exp(log(f)-abs(x2-x1)/t)*(cos((2*pi*abs(x2-x1))/p)+exp(log(f))+1))/(pow(exp(log(f))+2,2));
