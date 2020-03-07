@@ -78,7 +78,7 @@ function run_version_checks {
 
 }
 
-git pull --tags
+git pull --all
 git branch
 git log
 
