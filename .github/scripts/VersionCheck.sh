@@ -101,7 +101,7 @@ if git branch -a | grep -qw $FEATURE_BRANCH_NAME; then
           git checkout -q $FEATURE_BRANCH_NAME
 
           # Checking if the last commit on master is a parent to the feature branch
-          if git describe --tags feature | grep -q $MASTER_TAG; then
+          if git describe --tags $FEATURE_BRANCH_NAME | grep -q $MASTER_TAG; then
 
                printf "\nThe last commit on master is a parent to the feature branch.\n\n"
 
