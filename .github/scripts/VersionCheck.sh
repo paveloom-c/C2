@@ -82,7 +82,7 @@ function run_version_checks {
 MASTER_TAG="$(git describe --tags master)"
 
 # Checking if the last commit on master has a tag
-if echo $MASTER_TAG | grep -q -v "-"; then
+if echo "$MASTER_TAG" | grep -q -v "-"; then
 
      printf "Found a tag at the last commit on master.\n\n"
 
