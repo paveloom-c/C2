@@ -78,26 +78,32 @@ function run_version_checks {
 
 }
 
+# Checking out to master
+git checkout -q master
+
 # Saving an output of the next command in a variable
 MASTER_TAG="$(git describe --tags master)"
 
-# Checking if the last commit on master has a tag
-if echo "$MASTER_TAG" | grep -q -v "-"; then
+# Checking if there is the feature branch
+if git branch -a | grep -qw $FEATURE_BRANCH_NAME; then
 
-     printf "Found a tag at the last commit on master.\n\n"
+     printf "Found the feature branch.\n\n"
 
-     # Checking if there is the feature branch
-     if git branch | grep -qw $FEATURE_BRANCH_NAME; then
+     # Checking if the last commit on master has a tag
+     if echo "$MASTER_TAG" | grep -q -v "-"; then
 
-          printf "Found the feature branch.\n\n"
+          printf "Found a tag at the last commit on master.\n\n"
+
+          printf "Master tag:\n"
+          echo $MASTER_TAG
+
+          # Checking out to the feature branch
+          git checkout -q $FEATURE_BRANCH_NAME
 
           # Checking if the last commit on master is a parent to the feature branch
           if git describe --tags feature | grep -q $MASTER_TAG; then
 
-               printf "The last commit on master is a parent to the feature branch.\n\n"
-
-               # Checking out to the feature branch
-               git checkout -q $FEATURE_BRANCH_NAME
+               printf "\nThe last commit on master is a parent to the feature branch.\n\n"
 
                # Getting the current release tag
                CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
@@ -133,19 +139,28 @@ if echo "$MASTER_TAG" | grep -q -v "-"; then
                if [ "$ERROR_COUNT" -gt 0 ]; then
 
                     printf "\nNumber of errors: $ERROR_COUNT\n\n"
+                    exit 1
 
                else
 
-                    printf "\nEverything is okay.\n\n"
+                    printf "\nEverything is okay.\n"
 
                fi
 
           else
 
-               printf "The last commit on master is NOT a parent to the feature branch.\n\n"
+               printf "\nThe last commit on master is NOT a parent to the feature branch.\n\n"
+
+               # Checking out to the feature branch
+               git checkout -q master
+
+               printf "Checking if the current tag is the same as the master tag.\n\n"
 
                # Getting the current release tag
                CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
+
+               printf "Current tag from README.md:\n"
+               echo $CURRENT_TAG
 
                # Checking if the current tag is the same as the master tag
                if [ ! $CURRENT_TAG == $MASTER_TAG ]; then
@@ -157,35 +172,43 @@ if echo "$MASTER_TAG" | grep -q -v "-"; then
 
                fi
 
-               printf "\nEverything is okay.\n\n"
+               printf "\nEverything is okay.\n"
 
           fi
 
      else
 
-          printf "There is no feature branch like the specified one.\n\n"
+          printf "There is no tag at the last commit on master.\n\n"
 
-          # Getting the current release tag
-          CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
-
-          # Checking if the current tag is the same as the master tag
-          if [ ! $CURRENT_TAG == $MASTER_TAG ]; then
-
-               printf "\nThe current tag and the master tag are NOT equal."
-               printf "\nThe master tag should be changed to the current tag.\n\n"
-
-               exit 1
-
-          fi
-
-          printf "\nEverything is okay.\n\n"
+          printf "Doing nothing.\n"
 
      fi
 
 else
 
-     printf "There is no tag at the last commit on master.\n\n"
+     printf "There is no feature branch like the specified one.\n\n"
 
-     printf "Doing nothing.\n\n"
+     printf "Checking if the current tag is the same as the master tag.\n\n"
+
+     # Getting the current release tag
+     CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
+
+     printf "Master tag:\n"
+     echo $MASTER_TAG
+
+     printf "\nCurrent tag from README.md:\n"
+     echo $CURRENT_TAG
+
+     # Checking if the current tag is the same as the master tag
+     if [ ! $CURRENT_TAG == $MASTER_TAG ]; then
+
+          printf "\nThe current tag and the master tag are NOT equal."
+          printf "\nThe master tag should be changed to the current tag.\n\n"
+
+          exit 1
+
+     fi
+
+     printf "\nEverything is okay.\n"
 
 fi

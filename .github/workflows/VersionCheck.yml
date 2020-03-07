@@ -10,9 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Fetching
+      run: git fetch --prune --unshallow origin +refs/heads/*:refs/remotes/origin/*
     - name: Running the script to check the version
-      run: | 
-        git fetch --prune --unshallow origin +refs/heads/*:refs/remotes/origin/*
-        git checkout master
-        git checkout feature
-        bash .github/scripts/VersionCheck.sh
+      run: bash .github/scripts/VersionCheck.sh
