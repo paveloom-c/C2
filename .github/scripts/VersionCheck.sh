@@ -101,7 +101,7 @@ if git branch -a | grep -qw $FEATURE_BRANCH_NAME; then
           git checkout -q $FEATURE_BRANCH_NAME
 
           # Checking if the last commit on master is a parent to the feature branch
-          if git describe --tags feature | grep -q $MASTER_TAG; then
+          if git describe --tags $FEATURE_BRANCH_NAME | grep -q $MASTER_TAG; then
 
                printf "\nThe last commit on master is a parent to the feature branch.\n\n"
 
@@ -188,27 +188,38 @@ else
 
      printf "There is no feature branch like the specified one.\n\n"
 
-     printf "Checking if the current tag is the same as the master tag.\n\n"
+     # Checking if the last commit on master has a tag
+     if echo "$MASTER_TAG" | grep -q -v "-"; then
 
-     # Getting the current release tag
-     CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
+          printf "Checking if the current tag is the same as the master tag.\n\n"
 
-     printf "Master tag:\n"
-     echo $MASTER_TAG
+          # Getting the current release tag
+          CURRENT_TAG="$(grep -o "\-.*\-" README.md | sed 's/-//g')"
 
-     printf "\nCurrent tag from README.md:\n"
-     echo $CURRENT_TAG
+          printf "Master tag:\n"
+          echo $MASTER_TAG
 
-     # Checking if the current tag is the same as the master tag
-     if [ ! $CURRENT_TAG == $MASTER_TAG ]; then
+          printf "\nCurrent tag from README.md:\n"
+          echo $CURRENT_TAG
 
-          printf "\nThe current tag and the master tag are NOT equal."
-          printf "\nThe master tag should be changed to the current tag.\n\n"
+          # Checking if the current tag is the same as the master tag
+          if [ ! $CURRENT_TAG == $MASTER_TAG ]; then
 
-          exit 1
+               printf "\nThe current tag and the master tag are NOT equal."
+               printf "\nThe master tag should be changed to the current tag.\n\n"
+
+               exit 1
+
+          fi
+
+          printf "\nEverything is okay.\n"
+
+     else
+
+          printf "There is no tag at the last commit on master.\n\n"
+
+          printf "Doing nothing.\n"       
 
      fi
-
-     printf "\nEverything is okay.\n"
 
 fi
