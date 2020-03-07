@@ -79,6 +79,7 @@ function run_version_checks {
 }
 
 git pull --tags
+git branch
 git log
 
 # Saving an output of the next command in a variable
