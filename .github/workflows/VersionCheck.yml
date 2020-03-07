@@ -1,0 +1,14 @@
+name: VersionCheck
+
+on: push
+
+jobs:
+  VersionCheck:
+
+    name: VersionCheck
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Running the script to check the version
+      run: bash .github/scripts/VersionCheck.sh
