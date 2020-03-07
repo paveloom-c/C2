@@ -15,4 +15,4 @@ jobs:
         git fetch --prune --unshallow origin +refs/heads/*:refs/remotes/origin/*
         git checkout master
         git checkout feature
-        bash -x .github/scripts/VersionCheck.sh
+        bash .github/scripts/VersionCheck.sh

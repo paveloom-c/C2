@@ -78,8 +78,6 @@ function run_version_checks {
 
 }
 
-
-
 # Saving an output of the next command in a variable
 MASTER_TAG="$(git describe --tags master)"
 
