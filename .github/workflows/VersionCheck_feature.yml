@@ -1,11 +1,14 @@
-name: VersionCheck
+name: VersionCheck (feature)
 
-on: push
+on:
+  push:
+    branches:
+      - feature
 
 jobs:
-  VersionCheck:
+  VersionCheck_feature:
 
-    name: VersionCheck
+    name: VersionCheck (feature)
     runs-on: ubuntu-latest
 
     steps:
@@ -13,4 +16,4 @@ jobs:
     - name: Fetching
       run: git fetch --prune --unshallow origin +refs/heads/*:refs/remotes/origin/*
     - name: Running the script to check the version
-      run: bash .github/scripts/VersionCheck.sh
+      run: bash .github/scripts/VersionCheck_feature.sh
