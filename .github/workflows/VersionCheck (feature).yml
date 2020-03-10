@@ -16,4 +16,4 @@ jobs:
     - name: Fetching
       run: git fetch --prune --unshallow origin +refs/heads/*:refs/remotes/origin/*
     - name: Running the script to check the version
-      run: bash .github/scripts/VersionCheck_feature.sh
+      run: bash .github/scripts/VersionCheck\ \(feature\).sh
