@@ -2,8 +2,8 @@ name: VersionCheck (feature)
 
 on:
   push:
-    branches:
-      - feature
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+_feature_*
 
 jobs:
   VersionCheck_feature:
