@@ -29,7 +29,7 @@
      .SILENT :
 
      ## Phony targets
-     .PHONY : git, git-am, archive
+     .PHONY : git, final, git-am, archive
 
      ## Default rule when calling `make`
      ALL : git
