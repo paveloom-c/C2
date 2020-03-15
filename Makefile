@@ -178,6 +178,6 @@
 
      archive :
 	          cd Notebooks/ && find Base/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Base.zip -FS -q -@ && cd ../
-	          # cd Notebooks/ && find Comparison/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Comparison.zip -FS -q -@ && cd ../
+	          cd Notebooks/ && find Comparison/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Comparison.zip -FS -q -@ && cd ../
 	          cd Notebooks/ && find Tests/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Tests.zip -FS -q -@ && cd ../
 	          find Notebooks/ -path '*/.*' -prune -o -type f -print | zip Archives/Notebooks.zip -FS -q -@
