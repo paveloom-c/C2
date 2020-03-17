@@ -29,7 +29,7 @@
      .SILENT :
 
      ## Phony targets
-     .PHONY : git, final, git-am, archive
+     .PHONY : git, final, new, del, git-am, archive
 
      ## Default rule when calling `make`
      ALL : git
@@ -166,6 +166,19 @@
 	             git tag -d $$LAST_TAG
 
 	        fi
+
+     ## Rule for creating a new feature branch
+
+     new :
+	      git checkout -q master
+	      git checkout -b ${FEATURE_BRANCH}
+	      git push -u origin ${FEATURE_BRANCH}
+
+	## Rule for deleting current feature branch locally
+
+     del :
+	      git checkout -q master
+	      git branch -D ${FEATURE_BRANCH}
 
      ## Rule for amending of the last commit
 
