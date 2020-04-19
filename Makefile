@@ -47,11 +47,11 @@
      ## Rule for creation and publishing of a commit
 
      git :
- 
+
 	      # Determining current branch
 	      CURRENT_BRANCH=$$(git status | head -n 1 | cut -d " " -f 3)
 
-	      # Checking the current branch 
+	      # Checking the current branch
 	      if [ "$$CURRENT_BRANCH" = "${FEATURE_BRANCH}" ]; then
 
 	           # Determining the last tag
@@ -75,7 +75,7 @@
 	                     # Creating a commit
 	                     git add -A
 	                     git commit -e
-                     
+
 	                     # Checking if a commit was created
 	                     if [ $$? -eq 0 ]; then
 
@@ -126,7 +126,7 @@
 	                     git push
 
 	                fi
-  
+
 	           fi
 
 	      else
@@ -148,7 +148,7 @@
      # Rule for deleting the last generated tag
      # on the feature branch locally and remotely
 
-     final : 
+     final :
 
 	        # Determining current branch
 	        CURRENT_BRANCH=$$(git status | head -n 1 | cut -d " " -f 3)
@@ -191,6 +191,7 @@
 
      archive :
 	          cd Notebooks/ && find Base/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Base.zip -FS -q -@ && cd ../
-	          cd Notebooks/ && find Comparison/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Comparison.zip -FS -q -@ && cd ../
+	          cd Notebooks/ && find DS/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/DS.zip -FS -q -@ && cd ../
+	          cd Notebooks/ && find Kernels/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Kernels.zip -FS -q -@ && cd ../
 	          cd Notebooks/ && find Tests/ -path '*/.*' -prune -o -type f -print | zip ../Archives/Notebooks/Tests.zip -FS -q -@ && cd ../
 	          find Notebooks/ -path '*/.*' -prune -o -type f -print | zip Archives/Notebooks.zip -FS -q -@
