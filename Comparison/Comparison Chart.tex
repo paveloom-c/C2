@@ -1,0 +1,357 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{lmodern}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+
+\usepackage[bookmarks=false]{hyperref}
+\hypersetup{pdfborder={0 0 0 [0 0]}, 
+            pdfstartview={FitH},
+            colorlinks=true,
+            pdftitle={Comparison Chart},
+            pdfauthor={Pavel Sobolev}}
+
+\usepackage{geometry}
+\geometry{a4paper, paperwidth=5in, paperheight=3in,
+          left=.5in, right=.5in, top=.35in, bottom=.35in}
+
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0ex}{-1pt}
+
+\setlength\parindent{0pt}
+\newcommand{\blank}[1]{\hspace*{#1}}
+
+\begin{document}
+\pagestyle{empty}
+
+\section*{\hypertarget{sec:comparison}{Comparison chart}}
+
+\fontsize{5}{4}\selectfont Written by \href{https://github.com/Paveloom/}{Pavel Sobolev} and located \href{https://github.com/Paveloom/C2}{here}. Release version: \href{https://github.com/Paveloom/C2/releases/tag/v0.8.0}{0.8.0} \par
+\vspace{3pt}
+
+% \fontsize{5}{3}\selectfont Used abbreviations: \par
+% \vspace{2pt}
+
+\fontsize{4}{3}\selectfont
+KIC -- ID from \href{https://archive.stsci.edu/kepler/data_search/search.php}{Kepler Input Catalog}; \\
+KID -- Kernel Identifier; \\
+KL -- Kernel Link (\href{https://george.readthedocs.io/en/latest/}{\textit{george}}); \\
+CNL -- Notebook Link (\href{https://celerite.readthedocs.io/}{\textit{celerite}}); \\
+GNL -- Notebook Link (\href{https://george.readthedocs.io/en/latest/}{\textit{george}}); \\
+TP -- Value of the period of a star [days] \\
+\blank{12pt} from table 3 from \href{https://paveloom.github.io/Paveloom/Repositories/C2/2/Mathur%20et%20al.%20(2014).pdf}{Mathur et al. (2014)}; \\
+IP -- Inferred value of the period [days] obtained by \\
+\blank{10pt} minimizing the negative marginalized likelihood; \\
+LF -- Value of the likelihood function \par
+
+\vspace{5pt}
+
+$\begin{array}{@{}cccccccc@{}}
+
+    $KIC$ & $KID$ & $KL$ & $CNL$ & $GNL$ & $TP$ & $IP$ & $LF$ \\ 
+    
+    \midrule
+    
+    $ \href{https://archive.stsci.edu/kepler/data_search/search.php?target=1430163&action=Search&outputformat=HTML_Table}{1430163} $ & 
+    
+    $ \hyperlink{sec:base}{Base} $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/Base/Revised/Base%20(celerite).ipynb}{link}
+    $ &
+    
+    $ --- $ &
+    
+    3.88 \pm 0.58 &
+    
+    3.8616782074415545 &
+    
+    11569.731327537733 \\
+    
+    \midrule[.2pt]
+    
+    & $ \hyperlink{sec:ds}{DS} $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/DS/DS%20(celerite).ipynb}{link}
+    $ &
+    
+    $ --- $ & 
+    
+    & 
+    
+    3.862409454622822 &
+    
+    11569.731268360863 \\
+    
+    \midrule[.2pt]
+    
+    & $ \hyperlink{sec:dss}{DSS} $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/Kernels/DSS.yml}{link}
+    $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/DSS/DSS%20(george).ipynb}{link}
+    $ & 
+    
+    & 
+    
+    4.025972513638813 &
+    
+    9795.464897296839 \\
+    
+    \midrule[.4pt]
+    
+    & $ \hyperlink{sec:basen}{BaseN} $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/BaseN/BaseN%20(celerite).ipynb}{link}
+    $ &
+    
+    $ --- $ & 
+    
+    & 
+    
+    3.7612323279620403 &
+    
+    11537.419932869527 \\
+    
+    \midrule[.2pt]
+    
+    & $ \hyperlink{sec:dsn}{DSN} $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/DSN/DSN%20(celerite).ipynb}{link}
+    $ &
+    
+    $ --- $ & 
+    
+    & 
+    
+    3.8613967998546928 &
+    
+    11569.730904214402 \\
+    
+    \midrule[.2pt]
+    
+    & $ \hyperlink{sec:dssn}{DSSN} $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/feature/Notebooks/Kernels/DSSN.yml}{link}
+    $ &
+    
+    $ --- $ &
+    
+    $
+    \href{https://github.com/Paveloom/C2/blob/master/Notebooks/DSSN/DSSN%20(george).ipynb}{link}
+    $ & 
+    
+    & 
+    
+    4.096826429847693 &
+    
+    11640.772932935852 \\
+    
+    \midrule
+    
+\end{array}$
+
+\newpage
+% \changepage{}{}{}{}{}{0in}{}{1in}{-10in}
+% \pdfpagewidth=.5in
+\pdfpageheight=2.5in
+
+\subsection*{\hypertarget{sec:base}{\hyperlink{sec:comparison}{Base}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = \frac{a}{2+b} e^{-\tau/c} \left[ \cos\left(\frac{2 \pi \tau}{P}\right) + \left(1+b\right)\right] \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    a $\longrightarrow $ log\_amp; \\
+    b $\longrightarrow $ factor; \\
+    c $\longrightarrow $ log\_timescale; \\
+    P $\longrightarrow $ log\_period; \par
+    
+    \columnbreak
+    
+    Bounds: \\
+    log\_amp: (-10.0, 0.0); \\
+    factor: (-1.0, 0.0) \\
+    log\_timescale: (0.0, 2.5); \\
+    log\_period: (-3.0, 5.0); \par
+    
+\end{multicols}
+
+\newpage
+
+\subsection*{\hypertarget{sec:ds}{\hyperlink{sec:comparison}{DS}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = A e^{-a\tau} cos\left(\frac{2\pi\tau}{P}\right) \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    A $\longrightarrow $ log\_amp; \\
+    a $\longrightarrow $ log\_a; \\
+    P $\longrightarrow $ log\_P; \par
+
+    \columnbreak
+    
+    Bounds: \\
+    log\_amp: (-5.0, 0.0); \\
+    log\_a: (-5.0, 0.0); \\
+    log\_P: (-3.0, 5.0) \par
+    
+\end{multicols}
+
+\newpage
+
+\subsection*{\hypertarget{sec:dss}{\hyperlink{sec:comparison}{DSS}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = A e^{-a\tau^2} cos\left(\frac{2\pi\tau}{P}\right) \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    A $\longrightarrow $ amp; \\
+    a $\longrightarrow $ a; \\
+    P $\longrightarrow $ P; \par
+
+    \columnbreak
+    
+    Bounds: \\
+    amp: (0.0025, 1.0); \\
+    a: (0.0, 50.0); \\
+    P: (2.5, 10.0) \par
+    
+\end{multicols}
+
+\newpage
+
+\subsection*{\hypertarget{sec:basen}{\hyperlink{sec:comparison}{BaseN}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = \frac{a}{2+b} e^{-\tau/c} \left[ \cos\left(\frac{2 \pi \tau}{P}\right) + \left(1+b\right)\right] + F e^{ -\tau / f } \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    a $\longrightarrow $ log\_amp; \\
+    b $\longrightarrow $ factor; \\
+    c $\longrightarrow $ log\_timescale; \\
+    P $\longrightarrow $ log\_period; \\
+    F $\longrightarrow $ log\_famp; \\
+    f $\longrightarrow $ log\_ftimescale; \par
+    
+    \columnbreak
+    
+    Bounds: \\
+    log\_amp: (-10.0, 0.0); \\
+    factor: (-1.0, 0.0); \\
+    log\_timescale: (0.0, 2.5); \\
+    log\_period: (-3.0, 5.0); \\
+    log\_famp: (-5.0, 12.0); \\
+    log\_ftimescale: ; (2.0, 20.0) \par
+    
+\end{multicols}
+
+\newpage
+
+\subsection*{\hypertarget{sec:dsn}{\hyperlink{sec:comparison}{DSN}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = A e^{-a\tau} cos\left(\frac{2\pi\tau}{P}\right) + F e^{ -\tau / f } \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    A $\longrightarrow $ log\_amp; \\
+    a $\longrightarrow $ log\_a; \\
+    P $\longrightarrow $ log\_p; \\
+    F $\longrightarrow $ log\_F; \\
+    f $\longrightarrow $ log\_f; \par
+
+    \columnbreak
+    
+    Bounds: \\
+    log\_amp: (-5.0, 0.0); \\
+    log\_a: (-5.0, 0.0); \\
+    log\_p: (-3.0, 5.0) \\
+    log\_F: (-20.0, 0.0) \\
+    log\_f: (0.0, 10.0) \par
+    
+\end{multicols}
+
+\newpage
+
+\subsection*{\hypertarget{sec:dssn}{\hyperlink{sec:comparison}{DSSN}}}
+
+\normalsize
+$$ \hfilneg k(\tau) = A e^{-a \tau^2} cos\left(\frac{2\pi\tau}{P}\right) + B e^{ -b \tau } \hspace{10000pt minus 1fil} $$
+
+\vspace{0pt}
+\tiny
+
+\setlength{\columnsep}{-10em}
+\begin{multicols}{2}
+
+    Parameters: \\
+    A $\longrightarrow $ amp; \\
+    a $\longrightarrow $ a; \\
+    B $\longrightarrow $ bmp; \\
+    b $\longrightarrow $ b; \\
+    P $\longrightarrow $ p; \par
+
+    \columnbreak
+    
+    Bounds: \\
+    amp: (0.0025, 1.0); \\
+    a: (0.0, 5.0); \\
+    bmp: (0.0, 1.0) \\
+    b: (0.0, 50.0) \\
+    p: (2.5, 5.0) \par
+    
+\end{multicols}
+
+\end{document}

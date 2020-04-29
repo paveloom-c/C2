@@ -1,4 +1,2 @@
-*.idea/
+# No checkpoints
 *.ipynb_checkpoints/
-
-*pyc

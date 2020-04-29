@@ -39,7 +39,7 @@ function version_check_pdf {
 
 function run_version_checks {
 
-     version_check_pdf "PDF/Comparison Chart.pdf"
+     version_check_pdf "Comparison/Comparison Chart.pdf"
 
 }
 

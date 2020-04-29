@@ -1,0 +1,42 @@
+name: DampedSineSquaredKernelPlusWhiteNoise
+doc: A * exp( -a * |x1 - x2|^2 ) * cos( 2 * pi * |x1 - x2| / P ) + B * exp( -b * |x1 - x2| )
+stationary: false
+params: [amp, a, bmp, b, p]
+
+reparams:
+    pi: return 4 * atan(1.0);
+    two_pi_p: return 8 * atan(1.0) / p;
+
+value: |
+    double xd = x1-x2;
+    return amp * exp( -a * xd * xd ) * cos( two_pi_p * abs(xd)) + bmp * exp( -b * abs(xd) );
+
+grad:
+    x1: |
+        double xd = x1-x2,
+               xd_abs = abs(xd),
+               arg = two_pi_p * xd_abs,
+               m1 = 2 * amp * xd * exp(-a * xd * xd);
+        return - pi * m1 * sin(arg) / (p * xd_abs) - a * m1 * cos(arg) - b * bmp * xd * exp(-b * xd_abs) / xd_abs;
+    x2: |
+        double xd = x1-x2,
+               xd_abs = abs(xd),
+               arg = two_pi_p * xd_abs,
+               m1 = 2 * amp * xd * exp(-a * xd * xd);
+        return pi * m1 * sin(arg) / (p * xd_abs) + a * m1 * cos(arg) + b * bmp * xd * exp(-b * xd_abs) / xd_abs;
+    amp: |
+        double xd_abs = abs(x1-x2);
+        return exp( -a * xd_abs * xd_abs ) * cos( two_pi_p * xd_abs );
+    a: |
+        double xd = x1-x2,
+               m1 = - xd * xd;
+        return amp * m1 * exp(a * m1) * cos(two_pi_p * abs(xd));
+    bmp: |
+        return exp(-b * abs(x1-x2));
+    b: |
+        double xd_abs = abs(x1-x2);
+        return - bmp * xd_abs * exp(-b * xd_abs);
+    p: |
+        double xd = x1-x2,
+               arg = two_pi_p * abs(xd);
+        return arg * amp * exp(-a * xd * xd) * sin(arg) / p;
